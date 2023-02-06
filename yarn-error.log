@@ -1,0 +1,81 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn install
+
+PATH: 
+  /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/kamau/Documents/Workspace/openclassrooms/P14/components/sp-table/node_modules/.bin:/Users/kamau/Library/Application Support/JetBrains/Toolbox/scripts:/Users/kamau/Library/flutter/bin/
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.12.1
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  SyntaxError: /Users/kamau/Documents/Workspace/openclassrooms/P14/components/sp-table/package.json: Unexpected token ] in JSON at position 399
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "sp-table",
+    "version": "1.0.0",
+    "description": "A lightweight yet complete table component for React",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/okafrancois/sp-table.git"
+    },
+    "homepage": "https://github.com/okafrancois/sp-table.git",
+    "author": "Berny Itoutou",
+    "keywords": [
+      "react",
+      "table",
+      "component",
+      "hd",
+    ],
+    "main": "dist/index.js",
+    "module": "./dist/index.js",
+    "exports": {
+      ".": {
+        "import": "./dist/index.js",
+        "require": "./dist/index.js"
+      }
+    },
+    "files": [
+      "dist",
+      "README.md"
+    ],
+    "scripts": {
+      "build": "rollup -c --bundleConfigAsCjs",
+      "start": "rollup -c -w"
+    },
+    "peerDependencies": {
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+      "@types/react": "^18.0.27",
+      "@types/react-dom": "^18.0.10",
+      "babel-core": "^6.26.3",
+      "babel-runtime": "^6.26.0",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "rollup": "^3.10.1",
+      "rollup-plugin-postcss": "^4.0.2",
+      "rollup-plugin-typescript2": "^0.34.1",
+      "sass": "^1.57.1",
+      "typescript": "^4.9.4"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

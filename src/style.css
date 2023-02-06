@@ -1,0 +1,49 @@
+.table-component__table {
+  width: 100%;
+  border: 1px solid #c6c6c6;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 3;
+}
+.table-component__headers {
+  background: lightgray;
+}
+.table-component__header, .table-component__cell {
+  height: 50px;
+  padding: 10px 20px;
+  min-width: max-content;
+  text-align: left;
+  border-bottom: 1px solid #c6c6c6;
+}
+.table-component__header i, .table-component__cell i {
+  margin-left: 10px;
+}
+.table-component__row:last-child td {
+  border: none;
+}
+.table-component__pagination {
+  margin-top: 10px;
+}
+.table-component .pagination {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+.table-component .pagination__next, .table-component .pagination__prev, .table-component .pagination__page {
+  cursor: pointer;
+  width: 35px;
+  aspect-ratio: 1/1;
+  border-radius: 3px;
+  background: lightgray;
+}
+.table-component .pagination__pages {
+  display: flex;
+  gap: 5px;
+}
+.table-component .pagination .--active {
+  background: darkslategray;
+  color: #fff;
+}
+
+/*# sourceMappingURL=style.css.map */

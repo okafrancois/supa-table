@@ -1,0 +1,63 @@
+.table-component {
+  &__table {
+    width: 100%;
+    border: 1px solid darken(lightgray, 5%);
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 3;
+  }
+
+  &__headers {
+    background: lightgray;
+  }
+
+  &__header,
+  &__cell {
+    height: 50px;
+    padding: 10px 20px;
+    min-width: max-content;
+    text-align: left;
+    border-bottom: 1px solid darken(lightgray, 5%);
+
+    i {
+      margin-left: 10px;
+    }
+  }
+
+  &__row:last-child {
+    td {
+      border: none;
+    }
+  }
+
+  &__pagination {
+    margin-top: 10px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+
+    &__next,
+    &__prev,
+    &__page{
+      cursor: pointer;
+      width: 35px;
+      aspect-ratio: 1/1;
+      border-radius: 3px;
+      background: lightgray;
+    }
+
+    &__pages {
+      display: flex;
+      gap: 5px;
+    }
+
+    .--active {
+      background: darkslategray;
+      color: #fff;
+    }
+  }
+}
