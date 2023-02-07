@@ -1,5 +1,6 @@
 import typescript from "rollup-plugin-typescript2"
 import postcss from "rollup-plugin-postcss"
+import terser from '@rollup/plugin-terser';
 import pkg from "./package.json"
 export default {
     input: "src/index.tsx",
@@ -17,6 +18,7 @@ export default {
             extract: false,
         }),
         typescript({ objectHashIgnoreUnknownHack: true }),
+        terser(),
     ],
     external: ["react", "react-dom"],
 }

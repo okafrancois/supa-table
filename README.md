@@ -11,7 +11,7 @@ A table component for React applications. It allows for custom header and data c
 ## Installation
 To install:
 ```
-npm install supa-modal
+npm install supa-table
 ```
 
 ## Usage
@@ -33,26 +33,26 @@ function MyComponent() {
         {name: 'Bob Smith', age: 32, occupation: 'Manager'}
     ];
     const limit = 10;
-    const sortKey = '';
     const currentPage = 1;
-    const onPageChange = (page: number) => {
-        console.log(page);
+    const handlePageChange = (page: number) => {
+        // update the current page
+    };
+    const handleLimitChange = (limit: number) => {
+        // update the datas
     };
     const totalResults = data.length;
     const totalPages = Math.ceil(totalResults / limit);
-    const searchKey = '';
 
     return (
         <TableComponent
             headers={headers}
             data={data}
             limit={limit}
-            sortKey={sortKey}
             currentPage={currentPage}
-            onPageChange={onPageChange}
+            onPageChange={handlePageChange}
+            onLimitChange={handleLimitChange}
             totalResults={totalResults}
             totalPages={totalPages}
-            searchKey={searchKey}
         />
     );
 }
@@ -64,8 +64,9 @@ function MyComponent() {
 - The limit prop sets the number of results to be shown per page, and the sortKey prop sets the key to sort the data by.
 - The currentPage prop sets the current page number, and the onPageChange prop is a function that is called when the page is changed.
 - The totalResults prop sets the total number of results, and the totalPages prop sets the total number of pages.
-- The searchKey prop allows for searching the table data and will automatically filter the table content.
+- The onPageChange prop is a function that is called a page is changed.
 - The onPaginate prop is a function that is called when the pagination is changed.
+- The onLimitChange prop is a function that is called when the limit is changed.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details

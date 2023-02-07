@@ -1,32 +1,102 @@
 .table-component {
   &__table {
+    display: block;
+    margin-top: 1rem;
     width: 100%;
-    border: 1px solid darken(lightgray, 5%);
+    border: 1px solid darken(lightgray, 1%);
     border-collapse: separate;
     border-spacing: 0;
-    border-radius: 3;
+    border-radius: 5px;
+    position: relative;
+    overflow: scroll;
   }
 
-  &__headers {
+  &-form {
+    &__headings {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    &__field {
+      input,
+      select {
+        padding: 10px 15px;
+      }
+
+      &.entries {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  }
+
+  &__header {
     background: lightgray;
+  }
+
+  &__header {
+    &-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+
+      &.--active.asc {
+        .table-component-filter:after {
+          border-top: 5px solid black;
+        }
+
+        .table-component-filter:before {
+         display: none;
+        }
+      }
+
+      &.--active.dsc {
+        .table-component-filter:before {
+          border-bottom: 5px solid black;
+        }
+
+        .table-component-filter:after {
+         display: none;
+        }
+      }
+    }
   }
 
   &__header,
   &__cell {
-    height: 50px;
-    padding: 10px 20px;
-    min-width: max-content;
-    text-align: left;
+    position: sticky;
+    left: 0;
     border-bottom: 1px solid darken(lightgray, 5%);
 
     i {
       margin-left: 10px;
     }
+
+    &-content {
+      padding: 15px 20px;
+      min-width: max-content;
+      text-align: left;
+    }
+
+    &:first-child {
+      z-index: 1;
+    }
   }
 
-  &__row:last-child {
-    td {
-      border: none;
+  &__cell {
+    background: #fff;
+  }
+
+  &__row {
+    overflow: scroll;
+    max-width: 500px;
+
+    &:last-child {
+      td {
+        border: none;
+      }
     }
   }
 
@@ -43,11 +113,20 @@
     &__next,
     &__prev,
     &__page{
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
       width: 35px;
       aspect-ratio: 1/1;
       border-radius: 3px;
       background: lightgray;
+      border: none;
+
+        &:hover {
+            background: dimgray;
+            color: #fff;
+        }
     }
 
     &__pages {
@@ -56,8 +135,39 @@
     }
 
     .--active {
-      background: darkslategray;
+      background: dimgray;
       color: #fff;
+    }
+  }
+
+  &-filter {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2px;
+
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid rgba(0, 0, 0, 0.3);
+    }
+
+    &:before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid rgba(0, 0, 0, 0.3);
     }
   }
 }

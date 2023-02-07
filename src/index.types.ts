@@ -12,7 +12,13 @@ export interface TableData {
     currentPage?: number;
     totalResults?: number;
     totalPages?: number;
-    onPageChange?: (page: number) => void;
+    onPageChange: (page: number) => void;
+    onLimitChange: (limit: number) => void;
     sortKey?: string;
     searchKey?: string;
+}
+
+export interface filterState {
+    key: string | null,
+    direction: 'asc' | 'dsc' | null
 }

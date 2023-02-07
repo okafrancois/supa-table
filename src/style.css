@@ -1,22 +1,70 @@
 .table-component__table {
+  display: block;
+  margin-top: 1rem;
   width: 100%;
-  border: 1px solid #c6c6c6;
+  border: 1px solid #d0d0d0;
   border-collapse: separate;
   border-spacing: 0;
-  border-radius: 3;
+  border-radius: 5px;
+  position: relative;
+  overflow: scroll;
 }
-.table-component__headers {
+.table-component-form__headings {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.table-component-form__field input,
+.table-component-form__field select {
+  padding: 10px 15px;
+}
+.table-component-form__field.entries {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.table-component__header {
   background: lightgray;
 }
+.table-component__header-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.table-component__header-content.--active.asc .table-component-filter:after {
+  border-top: 5px solid black;
+}
+.table-component__header-content.--active.asc .table-component-filter:before {
+  display: none;
+}
+.table-component__header-content.--active.dsc .table-component-filter:before {
+  border-bottom: 5px solid black;
+}
+.table-component__header-content.--active.dsc .table-component-filter:after {
+  display: none;
+}
 .table-component__header, .table-component__cell {
-  height: 50px;
-  padding: 10px 20px;
-  min-width: max-content;
-  text-align: left;
+  position: sticky;
+  left: 0;
   border-bottom: 1px solid #c6c6c6;
 }
 .table-component__header i, .table-component__cell i {
   margin-left: 10px;
+}
+.table-component__header-content, .table-component__cell-content {
+  padding: 15px 20px;
+  min-width: max-content;
+  text-align: left;
+}
+.table-component__header:first-child, .table-component__cell:first-child {
+  z-index: 1;
+}
+.table-component__cell {
+  background: #fff;
+}
+.table-component__row {
+  overflow: scroll;
+  max-width: 500px;
 }
 .table-component__row:last-child td {
   border: none;
@@ -31,19 +79,55 @@
   gap: 5px;
 }
 .table-component .pagination__next, .table-component .pagination__prev, .table-component .pagination__page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   width: 35px;
   aspect-ratio: 1/1;
   border-radius: 3px;
   background: lightgray;
+  border: none;
+}
+.table-component .pagination__next:hover, .table-component .pagination__prev:hover, .table-component .pagination__page:hover {
+  background: dimgray;
+  color: #fff;
 }
 .table-component .pagination__pages {
   display: flex;
   gap: 5px;
 }
 .table-component .pagination .--active {
-  background: darkslategray;
+  background: dimgray;
   color: #fff;
+}
+.table-component-filter {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 20px;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2px;
+}
+.table-component-filter:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(0, 0, 0, 0.3);
+}
+.table-component-filter:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.3);
 }
 
 /*# sourceMappingURL=style.css.map */

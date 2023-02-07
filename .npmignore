@@ -2,5 +2,8 @@ node_modules
 src
 rollup.config.js
 tsconfig.json
-typings.json
 typings.d.ts
+app.scss
+index.html
+main.tsx
+vite.config.ts
