@@ -159,9 +159,12 @@ const TableComponent: React.FC<TableData> = ({headers, data, limit=10, limitOpti
                                     <span>{header.name}</span>
                                     {
                                         header.sortable &&
-                                        <button className={"table-component-filter"} onClick={() => {
-                                            handleFilterClick(header.key)}
-                                        }/>
+                                        <button
+                                            className={"table-component-filter"}
+                                            onClick={() => {
+                                            handleFilterClick(header.key)}}
+                                            aria-label={`Sort by ${header.name}`}
+                                        />
                                     }
                                 </div>
                             </th>
@@ -213,7 +216,11 @@ const TableComponent: React.FC<TableData> = ({headers, data, limit=10, limitOpti
 const Pagination: ({totalPages, loadPrevPage, loadNextPage, handlePageChange, currentPage}: { totalPages: any; loadPrevPage: any; loadNextPage: any; handlePageChange: any, currentPage: any }) => JSX.Element = ({totalPages, loadPrevPage, loadNextPage, handlePageChange, currentPage}) => {
     return (
         <div className={"table-component__pagination pagination"}>
-            <button className={"pagination__prev"} onClick={loadPrevPage} disabled={currentPage - 1 <= 0}>
+            <button
+                className={"pagination__prev"}
+                onClick={loadPrevPage} disabled={currentPage - 1 <= 0}
+                aria-label={"Previous page"}
+            >
                 {`<`}
             </button>
             <div className="pagination__pages">
@@ -222,13 +229,20 @@ const Pagination: ({totalPages, loadPrevPage, loadNextPage, handlePageChange, cu
                         <button
                             key={`pagination-item-${item}-${index + 1}`}
                             className={`pagination__page ${currentPage === index + 1 ? '--active': ''}`}
-                            value={index + 1} onClick={handlePageChange}>
+                            value={index + 1} onClick={handlePageChange}
+                            aria-label={`Page ${index + 1}`}
+                        >
                             {index + 1}
                         </button>
                     ))
                 }
             </div>
-            <button className={"pagination__next"} onClick={loadNextPage} disabled={currentPage >= totalPages}>
+            <button
+                className={"pagination__next"}
+                onClick={loadNextPage}
+                disabled={currentPage >= totalPages}
+                aria-label={"Next page"}
+            >
                 {`>`}
             </button>
         </div>
