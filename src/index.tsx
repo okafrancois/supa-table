@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import './style.css';
 import PropTypes from 'prop-types';
 
@@ -15,8 +15,8 @@ export interface TableHeader {
 export interface TableData {
     headers: TableHeader[];
     data: object[];
-    limitOptions?: number[];
-    activeLimit?: number;
+    limit: number;
+    limitOptions: number[];
     currentPage?: number;
     totalResults?: number;
     totalPages?: number;
@@ -33,7 +33,7 @@ export interface filterState {
  * Main Component
  */
 
-const TableComponent: React.FC<TableData> = ({headers, data, limitOptions, activeLimit, sortKey, currentPage, onPageChange, onLimitChange, totalResults, totalPages}) => {
+const TableComponent: React.FC<TableData> = ({headers, data, limit=10, limitOptions = [10, 20, 50, 100], currentPage, onPageChange, onLimitChange, totalResults, totalPages}) => {
     const [tableEntries, setTableEntries]: any = useState<[]>([]);
     const [showPagination, setShowPagination] = useState<boolean>(true);
     const [search, setSearch] = useState<string>('');
@@ -41,8 +41,6 @@ const TableComponent: React.FC<TableData> = ({headers, data, limitOptions, activ
         key: '',
         direction: null
     });
-    const [limits, setLimits] = useState<number[]>([10, 20, 50, 100]);
-    const [currentLimit, setCurrentLimit] = useState<number>(10);
 
     const applyFilter = (data: any[]) => {
         return [...data].sort((a: object, b: object) => {
@@ -77,9 +75,8 @@ const TableComponent: React.FC<TableData> = ({headers, data, limitOptions, activ
         })
     }
 
-    const handleLimitChange = function(e: Event) {
+    const handleLimitChange = function(e: ChangeEvent<HTMLSelectElement>) {
         if (e.target && onLimitChange) {
-            setCurrentLimit(parseInt(e.target.value));
             onLimitChange(parseInt(e.target.value));
         }
     }
@@ -119,19 +116,11 @@ const TableComponent: React.FC<TableData> = ({headers, data, limitOptions, activ
             applySearch(search);
         }
 
-        if (limitOptions) {
-            setLimits(limitOptions);
+        if(limit && totalResults) {
+            setShowPagination(limit <= totalResults)
         }
 
-        if(activeLimit) {
-            setCurrentLimit(activeLimit);
-        }
-
-        if(activeLimit && totalResults) {
-            setShowPagination(activeLimit <= totalResults)
-        }
-
-    }, [data, activeLimit, sortKey, currentPage, totalResults, totalPages, search, activeFilter]);
+    }, [data, limit, currentPage, totalResults, totalPages, search, activeFilter]);
 
     return (
         <div className={"table-component"}>
@@ -149,10 +138,10 @@ const TableComponent: React.FC<TableData> = ({headers, data, limitOptions, activ
                     <label className={"table-component-form__field entries"}>
                         <span>Entries to show</span>
                         <div className="custom-select">
-                            <select className={"input"} name={"limit"} value={currentLimit} onChange={handleLimitChange}>
+                            <select className={"input"} name={"limit"} value={limit} onChange={handleLimitChange}>
                                 {
-                                    limits.map((limit, index) => (
-                                        <option key={`limit-${index + 1}`} value={limit}>{limit}</option>
+                                    limitOptions.map((option: number, index: number) => (
+                                        <option key={`limit-option-${index + 1}`} value={`${option}`}>{option}</option>
                                     ))
                                 }
                             </select>
@@ -258,7 +247,8 @@ TableComponent.propTypes = {
         sortable: PropTypes.bool.isRequired,
     })).isRequired,
     data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-    limit: PropTypes.number,
+    limit: PropTypes.number.isRequired,
+    limitOptions: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
     sortKey: PropTypes.string,
     currentPage: PropTypes.number,
     onPageChange: PropTypes.func.isRequired,

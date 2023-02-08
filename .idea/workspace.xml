@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ababfd58-2c24-4eb6-853e-3f630adac5a7" name="Changes" comment="feat(various): fix a type error on limit select handler">
+    <list default="true" id="ababfd58-2c24-4eb6-853e-3f630adac5a7" name="Changes" comment="feat(various): init local repo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.types.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="19583" />
+    <option name="totalTimeSeconds" value="20130" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -30,6 +29,9 @@
   </component>
   <component name="FormatOnSaveOptions">
     <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -69,7 +71,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.build">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -102,8 +104,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="npm.sass" />
       </list>
     </recent_temporary>
@@ -128,8 +130,7 @@
       <workItem from="1675729213341" duration="562000" />
       <workItem from="1675762000776" duration="820000" />
       <workItem from="1675763533335" duration="631000" />
-      <workItem from="1675851164055" duration="578000" />
-      <workItem from="1675852123181" duration="824000" />
+      <workItem from="1675851164055" duration="464000" />
     </task>
     <task id="LOCAL-00001" summary="feat(various): init local repo">
       <created>1675680411101</created>
@@ -145,14 +146,7 @@
       <option name="project" value="LOCAL" />
       <updated>1675728632635</updated>
     </task>
-    <task id="LOCAL-00003" summary="feat(various): fix a type error on limit select handler">
-      <created>1675851678284</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1675851678284</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,7 +167,6 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="feat(various): init local repo" />
     <MESSAGE value="feat(various): change the table structure, add search and active filters system" />
-    <MESSAGE value="feat(various): fix a type error on limit select handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(various): fix a type error on limit select handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(various): change the table structure, add search and active filters system" />
   </component>
 </project>

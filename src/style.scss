@@ -101,10 +101,6 @@
     }
   }
 
-  &__pagination {
-    margin-top: 10px;
-  }
-
   .pagination {
     display: flex;
     justify-content: flex-start;
@@ -178,5 +174,6 @@
     align-items: center;
     flex-wrap: wrap;
     gap:20px;
+    margin-top: 15px;
   }
 }
