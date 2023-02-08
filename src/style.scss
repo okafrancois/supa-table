@@ -15,7 +15,8 @@
     &__headings {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
+      flex-wrap: wrap;
     }
 
     &__field {
@@ -169,5 +170,13 @@
       border-right: 5px solid transparent;
       border-bottom: 5px solid rgba(0, 0, 0, 0.3);
     }
+  }
+
+  &__options-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:20px;
   }
 }

@@ -1,22 +1,45 @@
 import React, {useEffect, useState} from 'react';
 import './style.css';
-import {filterState, TableData, TableHeader } from './index.types';
 import PropTypes from 'prop-types';
 
 /**
- * Configuration
+ * Config
  */
 
+export interface TableHeader {
+    name: string;
+    key: string;
+    sortable: boolean;
+}
+
+export interface TableData {
+    headers: TableHeader[];
+    data: object[];
+    limit?: number;
+    currentPage?: number;
+    totalResults?: number;
+    totalPages?: number;
+    onPageChange: (page: number) => void;
+    onLimitChange: (limit: number) => void;
+    sortKey?: string;
+    searchKey?: string;
+}
+
+export interface filterState {
+    key: string | '',
+    direction: 'asc' | 'dsc' | null
+}
 
 /**
- * Main component
+ * Main Component
  */
-const TableComponent: React.FC<TableData> = ({headers, data, limit, sortKey, currentPage, onPageChange, onLimitChange, totalResults, totalPages}) => {
+
+const TableComponent: React.FC<TableData> = ({headers, data, limit = 10, sortKey, currentPage, onPageChange, onLimitChange, totalResults, totalPages}) => {
     const [tableEntries, setTableEntries]: any = useState<[]>([]);
     const [showPagination, setShowPagination] = useState<boolean>(true);
     const [search, setSearch] = useState<string>('');
     const [activeFilter, setActiveFilter] = useState<filterState>({
-        key: null,
+        key: '',
         direction: null
     });
 
@@ -53,9 +76,10 @@ const TableComponent: React.FC<TableData> = ({headers, data, limit, sortKey, cur
         })
     }
 
-    const handleLimitChange = function(e: any) {
-        const {value} = e.target;
-        onLimitChange(parseInt(value));
+    const handleLimitChange = function(e: Event) {
+        if (e.target && onLimitChange) {
+            onLimitChange(parseInt(e.target.value));
+        }
     }
 
     const loadNextPage = () => {
@@ -84,9 +108,8 @@ const TableComponent: React.FC<TableData> = ({headers, data, limit, sortKey, cur
         setSearch(e.target.value)
     }
 
-
     useEffect(() => {
-        const filteredData = activeFilter.key ? applyFilter(data) : data;
+        const filteredData = activeFilter.key.length > 0 ? applyFilter(data) : data;
 
         setTableEntries(filteredData);
 
@@ -164,24 +187,23 @@ const TableComponent: React.FC<TableData> = ({headers, data, limit, sortKey, cur
                 }
                 </tbody>
             </table>
-            {
-                showPagination &&
-                <Pagination
+            <div className="table-component__options-wrapper">
+                {showPagination &&
+                    <Pagination
                     totalPages={totalPages}
                     loadPrevPage={loadPrevPage}
                     loadNextPage={loadNextPage}
                     handlePageChange={handlePageChange}
                     currentPage={currentPage}
-                />
-            }
+                    />
+                }
+                <div className="table-component__numbers">
+                    <span>Showing {tableEntries.length} of {totalResults} entries</span>
+                </div>
+            </div>
         </div>
     );
 };
-
-/**
- * Local functions
- */
-
 
 /**
  * Local components
@@ -237,6 +259,5 @@ TableComponent.propTypes = {
 /**
  * Init and export
  */
-
 
 export default TableComponent;
