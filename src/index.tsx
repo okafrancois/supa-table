@@ -15,14 +15,13 @@ export interface TableHeader {
 export interface TableData {
     headers: TableHeader[];
     data: object[];
-    limit?: number;
+    limitOptions?: number[];
+    activeLimit?: number;
     currentPage?: number;
     totalResults?: number;
     totalPages?: number;
     onPageChange: (page: number) => void;
     onLimitChange: (limit: number) => void;
-    sortKey?: string;
-    searchKey?: string;
 }
 
 export interface filterState {
@@ -34,7 +33,7 @@ export interface filterState {
  * Main Component
  */
 
-const TableComponent: React.FC<TableData> = ({headers, data, limit = 10, sortKey, currentPage, onPageChange, onLimitChange, totalResults, totalPages}) => {
+const TableComponent: React.FC<TableData> = ({headers, data, limitOptions, activeLimit, sortKey, currentPage, onPageChange, onLimitChange, totalResults, totalPages}) => {
     const [tableEntries, setTableEntries]: any = useState<[]>([]);
     const [showPagination, setShowPagination] = useState<boolean>(true);
     const [search, setSearch] = useState<string>('');
@@ -42,6 +41,8 @@ const TableComponent: React.FC<TableData> = ({headers, data, limit = 10, sortKey
         key: '',
         direction: null
     });
+    const [limits, setLimits] = useState<number[]>([10, 20, 50, 100]);
+    const [currentLimit, setCurrentLimit] = useState<number>(10);
 
     const applyFilter = (data: any[]) => {
         return [...data].sort((a: object, b: object) => {
@@ -78,6 +79,7 @@ const TableComponent: React.FC<TableData> = ({headers, data, limit = 10, sortKey
 
     const handleLimitChange = function(e: Event) {
         if (e.target && onLimitChange) {
+            setCurrentLimit(parseInt(e.target.value));
             onLimitChange(parseInt(e.target.value));
         }
     }
@@ -117,11 +119,19 @@ const TableComponent: React.FC<TableData> = ({headers, data, limit = 10, sortKey
             applySearch(search);
         }
 
-        if(limit && totalResults) {
-            setShowPagination(limit <= totalResults)
+        if (limitOptions) {
+            setLimits(limitOptions);
         }
 
-    }, [data, limit, sortKey, currentPage, totalResults, totalPages, search, activeFilter]);
+        if(activeLimit) {
+            setCurrentLimit(activeLimit);
+        }
+
+        if(activeLimit && totalResults) {
+            setShowPagination(activeLimit <= totalResults)
+        }
+
+    }, [data, activeLimit, sortKey, currentPage, totalResults, totalPages, search, activeFilter]);
 
     return (
         <div className={"table-component"}>
@@ -139,10 +149,12 @@ const TableComponent: React.FC<TableData> = ({headers, data, limit = 10, sortKey
                     <label className={"table-component-form__field entries"}>
                         <span>Entries to show</span>
                         <div className="custom-select">
-                            <select className={"input"} name={"limit"} value={limit} onChange={handleLimitChange}>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
+                            <select className={"input"} name={"limit"} value={currentLimit} onChange={handleLimitChange}>
+                                {
+                                    limits.map((limit, index) => (
+                                        <option key={`limit-${index + 1}`} value={limit}>{limit}</option>
+                                    ))
+                                }
                             </select>
                         </div>
                     </label>

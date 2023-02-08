@@ -449,7 +449,8 @@ const Main = () => {
                 data={data}
                 currentPage={1}
                 totalPages={4}
-                limit={5}
+                activeLimit={5}
+                limitOptions={[5,10,20,50,100]}
                 totalResults={20}
                 onPageChange={handlePageChange}
                 onLimitChange={handleLimitChange}
